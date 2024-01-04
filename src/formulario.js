@@ -1,6 +1,11 @@
 import validarCantidad from "./validarCantidad";
 import marcarPaso from "./marcarPaso";
+import siguientePaso from "./siguientePaso";
+
 const formulario = document.getElementById('formulario');
+
+//Reiniciando scroll al cargar el formulario
+formulario.querySelector('.formulario__body').scrollLeft = 0;
 
 formulario.addEventListener('keyup',(e)=>{
     if(e.target.tagName === 'INPUT'){
@@ -20,6 +25,7 @@ btnFormulario.addEventListener('click',(e)=>{
         
         if(validarCantidad()){
             marcarPaso('cantidad');
+            siguientePaso();
         };
     }
 });
