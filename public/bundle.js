@@ -1,15 +1,42 @@
 'use strict';
 
-const formulario$1 = document.getElementById('formulario');
+const formulario$3 = document.getElementById('formulario');
 
 const validarCantidad = () => {
     const expresionRegularCantidad = /^\d+(\.\d+)?$/;
-    const inputCantidad = formulario$1.cantidad;
+    const inputCantidad = formulario$3.cantidad;
     if(expresionRegularCantidad.test(inputCantidad.value)){
        inputCantidad.classList.remove('formulario__input--error');
        return true;
     } else {
         inputCantidad.classList.add('formulario__input--error');
+        return false;
+    }
+};
+
+const formulario$2 = document.getElementById('formulario');
+
+const validarNombre = ()=>{
+    const expresionRegularNombre = /^[a-zA-ZÀ-ÿ\s]{1,40}$/;
+    const inputNombre = formulario$2['nombre-receptor'];
+    if(expresionRegularNombre.test(inputNombre.value)){
+       inputNombre.classList.remove('formulario__input--error');
+       return true;
+    } else {
+        inputNombre.classList.add('formulario__input--error');
+        return false;
+    }};
+
+const formulario$1 = document.getElementById('formulario');
+
+const validaCorreo = ()=>{
+    const expresionRegularCorreo = /^[a-zA-Z0-9_.+-]+@[a-zA-Z0-9-]+\.[a-zA-Z0-9-.]+$/;
+    const inputCorreo = formulario$1['correo-receptor'];
+    if(expresionRegularCorreo.test(inputCorreo.value)){
+       inputCorreo.classList.remove('formulario__input--error');
+       return true;
+    } else {
+        inputCorreo.classList.add('formulario__input--error');
         return false;
     }
 };
@@ -49,6 +76,10 @@ formulario.addEventListener('keyup',(e)=>{
     if(e.target.tagName === 'INPUT'){
         if(e.target.id === 'cantidad'){
             validarCantidad();
+        } else if(e.target.id === 'nombre-receptor'){
+            validarNombre();
+        } else if(e.target.id === 'correo-receptor'){
+            validaCorreo();
         }    }});
 
 const btnFormulario = document.getElementById('formulario__btn');
@@ -62,6 +93,12 @@ btnFormulario.addEventListener('click',(e)=>{
         if(validarCantidad()){
             marcarPaso('cantidad');
             siguientePaso();
-        }    }
-});
+        }    } else if(pasoActual === 'datos'){
+        if(validarNombre() && validaCorreo()){
+            marcarPaso('datos');
+            siguientePaso();
+        }    } else if (pasoActual === 'metodo'){
+        marcarPaso('metodo');
+        siguientePaso();
+    }});
 //# sourceMappingURL=bundle.js.map
