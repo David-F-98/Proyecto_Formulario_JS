@@ -99,6 +99,33 @@ btnFormulario.addEventListener('click',(e)=>{
             siguientePaso();
         }    } else if (pasoActual === 'metodo'){
         marcarPaso('metodo');
+
+        //Formato de moneda Colombiana
+
+        const opciones = {style: 'currency', currency: 'COP'};
+        const formatoMoneda = new Intl.NumberFormat('es-CO', opciones);
+
+        document.querySelector('[data-valor="cantidad"] span').innerText = formatoMoneda.format(formulario.cantidad.value);
+        document.querySelector('[data-valor="nombre-receptor"] span').innerText = formulario['nombre-receptor'].value;
+        document.querySelector('[data-valor="correo-receptor"] span').innerText = formulario['correo-receptor'].value;
+        document.querySelector('[data-valor="metodo"] span').innerText = formulario.metodo.value;
+
+        //Cambiar el texto del btn a Transferir
+        btnFormulario.querySelector('span').innerHTML =  'Transferir';
+
+        //Agregamos la clase que deshabilita el boton
+        btnFormulario.classList.add('formulario__btn--disabled');
+
+        //Ocultar icono siguiente
+        btnFormulario.querySelector('[data-icono="siguiente"]').classList.remove('formulario__btn-contenedor-icono--active');
+
+        //Mostrar icono Banco
+        btnFormulario.querySelector('[data-icono="banco"]').classList.add('formulario__btn-contenedor-icono--active');
+
         siguientePaso();
+
+        setTimeout(()=>{
+            btnFormulario.classList.remove('formulario__btn--disabled');
+        },4000);
     }});
 //# sourceMappingURL=bundle.js.map
