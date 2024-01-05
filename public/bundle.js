@@ -126,7 +126,7 @@ btnFormulario.addEventListener('click',(e)=>{
 
         setTimeout(()=>{
             btnFormulario.classList.remove('formulario__btn--disabled');
-        },4000);
+        },3000);
     } else if (pasoActual === 'confirmacion' && !btnFormulario.matches('.formulario__btn--disabled')){
         //Aqui se haria la peticion al servidor
         ///////////////////////////////////////////////
@@ -144,7 +144,7 @@ btnFormulario.addEventListener('click',(e)=>{
             formulario.classList.add('formulario--hidden');
             //Mostramos la alerta
             document.getElementById('alerta').classList.add('alerta--active');
-        },4000);
+        },3000);
     }    
 });
 
@@ -173,13 +173,28 @@ linea.addEventListener('click',(e)=>{
         pasoActual.classList.remove('linea-pasos__paso-check--active');
         const identificador = pasoANavegar.dataset.paso;
         linea.querySelector(`[data-paso="${identificador}"] span`).classList.add('linea-pasos__paso-check--active');
+        
 
+        //Cambio de iconos y texto del boton
+        const btnFormulario = document.getElementById('formulario__btn');
+        //Texto
+        btnFormulario.querySelector('span').innerHTML = 'Siguiente';
+        //Icono lo remueve
+        btnFormulario.querySelector('[data-icono="banco"]').classList.remove('formulario__btn-contenedor-icono--active');
+        //Icono lo agrega
+        btnFormulario.querySelector('[data-icono="siguiente"]').classList.add('formulario__btn-contenedor-icono--active');
+
+        //Deshabilitamos el boton
+        btnFormulario.classList.remove('formulario__btn--disabled');
+
+        
         //Navegamos al paso
         document.querySelector(`.formulario__body [data-paso="${identificador}"]`).scrollIntoView({
             //Realiza una animación con el scrollIntoView desplazandose al inicio de la pantalla
             inline: 'start',
             behavior: 'smooth',
         });
+
     }
     
 });

@@ -67,7 +67,7 @@ btnFormulario.addEventListener('click',(e)=>{
 
         setTimeout(()=>{
             btnFormulario.classList.remove('formulario__btn--disabled');
-        },4000)
+        },3000)
     } else if (pasoActual === 'confirmacion' && !btnFormulario.matches('.formulario__btn--disabled')){
         //Aqui se haria la peticion al servidor
         ///////////////////////////////////////////////
@@ -85,7 +85,7 @@ btnFormulario.addEventListener('click',(e)=>{
             formulario.classList.add('formulario--hidden');
             //Mostramos la alerta
             document.getElementById('alerta').classList.add('alerta--active');
-        },4000);
+        },3000);
     };
     
 });
