@@ -147,4 +147,24 @@ btnFormulario.addEventListener('click',(e)=>{
         },4000);
     }    
 });
+
+const linea = document.getElementById('linea-pasos');
+linea.addEventListener('click',(e)=>{
+    // Ejecuta el click unicamente si el elemnto padre tiene dicha clase
+    // e.target.closest('.linea-pasos__paso');
+    if(!e.target.closest('.linea-pasos__paso')){
+        return false;
+    }
+    const pasoActual = document.querySelector('.linea-pasos__paso-check--active').closest('.linea-pasos__paso').dataset.paso;
+    if(pasoActual === 'cantidad'){
+        if(!validarCantidad()){
+            return;
+        }    }else if (pasoActual === 'datos'){
+        if(!validaCorreo() || !validarNombre()){
+            return;
+        }
+    }
+    console.log('Cambaindo de paso');
+    
+});
 //# sourceMappingURL=bundle.js.map
