@@ -130,7 +130,9 @@ btnFormulario.addEventListener('click',(e)=>{
     } else if (pasoActual === 'confirmacion' && !btnFormulario.matches('.formulario__btn--disabled')){
         //Aqui se haria la peticion al servidor
         ///////////////////////////////////////////////
+        ///////////////////////////////////////////////
 
+        
         //Cambiamos el texto del boton 
         btnFormulario.querySelector('span').innerHTML =  'Transfiriendo';
         //Deshabilitamos el btn
