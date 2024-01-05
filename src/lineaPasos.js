@@ -17,7 +17,7 @@ linea.addEventListener('click',(e)=>{
             return;
         };
     }else if (pasoActual === 'datos'){
-        if(!validaCorreo() || !validarNombre()){
+        if(!validarNombre() || !validaCorreo()){
             return;
         }
     };
@@ -27,7 +27,17 @@ linea.addEventListener('click',(e)=>{
 
     //comprobamos si el paso esta shuleado
     if(pasoANavegar.querySelector('.linea-pasos__paso-check--checked')){
-        console.log('Si tiene la palomita')
+        const pasoActual = linea.querySelector('.linea-pasos__paso-check--active');
+        pasoActual.classList.remove('linea-pasos__paso-check--active');
+        const identificador = pasoANavegar.dataset.paso;
+        linea.querySelector(`[data-paso="${identificador}"] span`).classList.add('linea-pasos__paso-check--active');
+
+        //Navegamos al paso
+        document.querySelector(`.formulario__body [data-paso="${identificador}"]`).scrollIntoView({
+            //Realiza una animación con el scrollIntoView desplazandose al inicio de la pantalla
+            inline: 'start',
+            behavior: 'smooth',
+        });
     }
     
 })
