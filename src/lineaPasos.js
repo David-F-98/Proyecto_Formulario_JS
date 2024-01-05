@@ -22,6 +22,12 @@ linea.addEventListener('click',(e)=>{
         }
     };
 
-    console.log('Cambaindo de paso');
+    //Obtenemos el paso al que queremos ir
+    const pasoANavegar = e.target.closest('.linea-pasos__paso');
+
+    //comprobamos si el paso esta shuleado
+    if(pasoANavegar.querySelector('.linea-pasos__paso-check--checked')){
+        console.log('Si tiene la palomita')
+    }
     
 })
